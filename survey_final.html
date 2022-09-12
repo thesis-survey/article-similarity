@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Article Similarity</title>
+      <link rel="stylesheet" href="styles.css">
+      <script type="text/javascript" src="churchJavaScript.js"></script>
+      <script type="text/javascript" src="articlesJavaScript.js"></script>
+      <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+      <script src="jquery-csv.js"></script>
+   </head>
+   <body onload="getText()"  onbeforeunload="return myFunction()"> 
+      <div class="styleAll" id="frontPage">
+         <h1 id="studyTitle">Understanding Article Similarity</h1>
+         <span style="font-size:17px"><strong>Welcome to our study!</strong><br />The aim of this study is to better understand which articles news readers find similar to one another. This study is part of the Master&#39;s research of Vegard Solberg at the University of Bergen, Norway, under supervision of Prof. Dr. Christoph Trattner and Dr. Alain Starke.<br /><br />Please carefully read the procedure followed in this study to give your informed consent for voluntary participation. *</span><br /><br /><br /><span style="font-size:17px"><strong>Procedure</strong><br />You will first be asked to rate 13 articles pairs on how similar you perceive them to be on a scale from 1 to 5. You will also be asked to provide a rating based on how confident you are in the similarity rating you have provided, and how familiar you are with the articles in question. In the next section, you will be asked to provide some insight as to what you based your similarity ratings on. In the final section you will be asked some questions about your personal characteristics, and to indicate how frequently you read news articles online.</span><br /><br /><br /><span style="font-size:17px"><strong>Duration</strong><br />The study takes around 8-9 minutes to complete.<br /><br /><br /><strong>Consent</strong><br />By clicking &quot;Next&quot;, you accept and agree that you have read and understood this consent form.&nbsp;</span><br /><br /><br /><span style="font-size:12px"><em>*</em>&nbsp; The collected information is used for writing scientific publications. Your Personal information is processed anonymously and it cannot be traced back to you. For questions about the study, please contact the exprimenter, Vegard Solberg: Vegard.Solberg@uib.no</span>
+         <button onclick="start_study()" id="startStudyButton">Next >></button>
+      </div>
+      <div class="styleAll" id="myDIV1">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 1 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory1"></p>
+                  <p class="article_title_style" id="article_title1"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift1">
+                     <li id="underoverskrift1_1"></li>
+                     <li id="underoverskrift1_2"></li>
+                     <li id="underoverskrift1_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture1" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_1"></figcaption>
+                  <p class="author_style" id="author1"></p>
+                  <p class="date_style" id="date1"></p>
+                  <p class="article_main_style" id="article_main1"></p>
+                  <button onclick="show_more()" id="showMoreLess1">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory2"></p>
+                  <p class="article_title_style" id="article_title2"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift2">
+                     <li id="underoverskrift2_1"></li>
+                     <li id="underoverskrift2_2"></li>
+                     <li id="underoverskrift2_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture2" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_2"></figcaption>
+                  <p class="author_style" id="author2"></p>
+                  <p class="date_style" id="date2"></p>
+                  <p class="article_main_style" id="article_main2"></p>
+                  <button onclick="show_more()" id="showMoreLess2">Show more</button>
+               </div>
+            </div>
+
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio"  name="pair1_sim" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair1_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair1_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair1_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair1_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_1" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_1" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_1" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_1" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_1" value="5">
+                     <label>5 <br> (Completely Agree)</label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_1" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_1" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_1" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_1" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_1" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_2" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_2" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_2" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_2" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_2" value="5">
+                     <label>5 <br> (Completely Agree)</label>
+                  </li>
+               </ul>
+            </form>
+            <button onclick="div_next()" class="nextButton1">Next >></button>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV2">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 2 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  <p class="article_subcategory_style" id="article_subcategory3"></p>
+                  <p class="article_title_style" id="article_title3"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift3">
+                     <li id="underoverskrift3_1"></li>
+                     <li id="underoverskrift3_2"></li>
+                     <li id="underoverskrift3_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture3" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_3"></figcaption>
+                  <p class="author_style" id="author3"></p>
+                  <p class="date_style" id="date3"></p>
+                  <p class="article_main_style" id="article_main3"></p>
+                  <button onclick="show_more()" id="showMoreLess3">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory4"></p>
+                  <p class="article_title_style" id="article_title4"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift4">
+                     <li id="underoverskrift4_1"></li>
+                     <li id="underoverskrift4_2"></li>
+                     <li id="underoverskrift4_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture4" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_4"></figcaption>
+                  <p class="author_style" id="author4"></p>
+                  <p class="date_style" id="date4"></p>
+                  <p class="article_main_style" id="article_main4"></p>
+                  <button onclick="show_more()" id="showMoreLess4">Show more</button>
+               </div>
+            </div>
+          
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair2_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair2_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair2_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair2_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair2_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_2" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_2" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_2" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_2" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_2" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>               
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_3" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_3" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_3" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_3" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_3" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_4" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_4" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_4" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_4" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_4" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV3">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 3 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory5"></p>
+                  <p class="article_title_style" id="article_title5"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift5">
+                     <li id="underoverskrift5_1"></li>
+                     <li id="underoverskrift5_2"></li>
+                     <li id="underoverskrift5_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture5" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_5"></figcaption>
+                  <p class="author_style" id="author5"></p>
+                  <p class="date_style" id="date5"></p>
+                  <p class="article_main_style" id="article_main5"></p>
+                  <button onclick="show_more()" id="showMoreLess5">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory6"></p>
+                  <p class="article_title_style" id="article_title6"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift6">
+                     <li id="underoverskrift6_1"></li>
+                     <li id="underoverskrift6_2"></li>
+                     <li id="underoverskrift6_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture6" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_6"></figcaption>
+                  <p class="author_style" id="author6"></p>
+                  <p class="date_style" id="date6"></p>
+                  <p class="article_main_style" id="article_main6"></p>
+                  <button onclick="show_more()" id="showMoreLess6">Show more</button>
+               </div>
+            </div>
+         
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair3_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair3_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair3_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair3_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair3_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_3" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_3" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_3" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_3" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_3" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>               
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_5" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_5" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_5" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_5" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_5" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_6" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_6" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_6" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_6" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_6" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV4">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 4 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory7"></p>
+                  <p class="article_title_style" id="article_title7"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift7">
+                     <li id="underoverskrift7_1"></li>
+                     <li id="underoverskrift7_2"></li>
+                     <li id="underoverskrift7_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture7" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_7"></figcaption>
+                  <p class="author_style" id="author7"></p>
+                  <p class="date_style" id="date7"></p>
+                  <p class="article_main_style" id="article_main7"></p>
+                  <button onclick="show_more()" id="showMoreLess7">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory8"></p>
+                  <p class="article_title_style" id="article_title8"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift8">
+                     <li id="underoverskrift8_1"></li>
+                     <li id="underoverskrift8_2"></li>
+                     <li id="underoverskrift8_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture8" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_8"></figcaption>
+                  <p class="author_style" id="author8"></p>
+                  <p class="date_style" id="date8"></p>
+                  <p class="article_main_style" id="article_main8"></p>
+                  <button onclick="show_more()" id="showMoreLess8">Show more</button>
+               </div>
+            </div>
+           
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair4_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair4_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair4_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair4_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair4_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+                <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_4" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_4" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_4" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_4" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_4" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_7" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_7" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_7" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_7" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_7" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_8" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_8" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_8" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_8" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_8" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+              
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV5">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 5 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory9"></p>
+                  <p class="article_title_style" id="article_title9"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift9">
+                     <li id="underoverskrift9_1"></li>
+                     <li id="underoverskrift9_2"></li>
+                     <li id="underoverskrift9_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture9" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_9"></figcaption>
+                  <p class="author_style" id="author9"></p>
+                  <p class="date_style" id="date9"></p>
+                  <p class="article_main_style" id="article_main9"></p>
+                  <button onclick="show_more()" id="showMoreLess9">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory10"></p>
+                  <p class="article_title_style" id="article_title10"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift10">
+                     <li id="underoverskrift10_1"></li>
+                     <li id="underoverskrift10_2"></li>
+                     <li id="underoverskrift10_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture10" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_10"></figcaption>
+                  <p class="author_style" id="author10"></p>
+                  <p class="date_style" id="date10"></p>
+                  <p class="article_main_style" id="article_main10"></p>
+                  <button onclick="show_more()" id="showMoreLess10">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair5_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair5_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair5_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair5_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair5_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_5" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_5" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_5" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_5" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_5" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_9" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_9" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_9" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_9" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_9" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_10" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_10" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_10" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_10" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_10" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV6">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 6 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory11"></p>
+                  <p class="article_title_style" id="article_title11"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift11">
+                     <li id="underoverskrift11_1"></li>
+                     <li id="underoverskrift11_2"></li>
+                     <li id="underoverskrift11_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture11" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_11"></figcaption>
+                  <p class="author_style" id="author11"></p>
+                  <p class="date_style" id="date11"></p>
+                  <p class="article_main_style" id="article_main11"></p>
+                  <button onclick="show_more()" id="showMoreLess11">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory12"></p>
+                  <p class="article_title_style" id="article_title12"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift12">
+                     <li id="underoverskrift12_1"></li>
+                     <li id="underoverskrift12_2"></li>
+                     <li id="underoverskrift12_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture12" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_12"></figcaption>
+                  <p class="author_style" id="author12"></p>
+                  <p class="date_style" id="date12"></p>
+                  <p class="article_main_style" id="article_main12"></p>
+                  <button onclick="show_more()" id="showMoreLess12">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair6_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair6_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair6_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair6_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair6_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_6" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_6" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_6" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_6" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_6" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_11" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_11" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_11" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_11" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_11" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_12" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_12" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_12" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_12" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_12" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV7">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 7 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory13">Article 1: Team GB</p>
+                  <p class="article_title_style" id="article_title13">Team GB swimmers come home after most successful Olympics</p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift13">
+                     <li id="underoverskrift13_1">Brits return from Tokyo with haul of four golds, having finished third in swimming medal table</li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture13" src="https://i.guim.co.uk/img/media/5909a77d9389402e7f9279448f638da2a778e683/0_91_2748_1649/master/2748.jpg?width=620&quality=85&fit=max&s=5990b19eeb3b5975e9032cc394a792a2" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_13">Adam Peaty, left, and Tom Dean arrive back at Heathrow after their Olympic Games successes. Photograph: Aaron Chown/PA</figcaption>
+                  <p class="author_style" id="author13">Nicola Slawson</p>
+                  <p class="date_style" id="date13">2021-08-02</p>
+                  <p class="article_main_style" id="article_main13">This is an attention check: Please give a rating of 5 to all 4 scales on this page. <br> <br> Team GB finished third in the swimming medal table behind the US and Australia. They won eight medals this past week. The squad returned with a haul of four golds, beating the...</p>
+                  <button>Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory14">Article 2: Collingwood</p>
+                  <p class="article_title_style" id="article_title14">Collingwood players write open letter apologising to anyone who suffered racism at the AFL club</p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift14">
+                     <li id="underoverskrift14_1">The letter, signed by 150 footballers and netballers, states that ‘through our silence we feel responsible for these injustices’</li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture14" src="https://i.guim.co.uk/img/media/36bf135d98b988a13d2f2d1a1ac64a94419e20e7/0_18_5041_3025/master/5041.jpg?width=620&quality=85&fit=max&s=67a05835867e8644aa8c5940bebc7390" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_14">The Collingwood players say they will ‘confront the history of our club in order to learn, heal and determine how best to walk forward together’. Photograph: Darren England/AAP</figcaption>
+                  <p class="author_style" id="author14">Mike Hytner</p>
+                  <p class="date_style" id="date14">2021-02-04</p>
+                  <p class="article_main_style" id="article_main14"> This is an attention check: Please give a rating of 5 to all 4 scales on this page. <br> <br> Collingwood players have issued an apology for their part in allowing a culture of racism to develop at the club. In an open letter attributed to “the 150 footballers and netballers of... </p>
+                  <button>Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair7_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair7_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair7_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair7_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair7_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_7" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_7" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_7" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_7" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_7" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_13" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_13" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_13" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_13" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_13" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_14" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_14" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_14" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_14" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_14" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+            <div id="myIDform">
+         <form id="idForm">
+            <label>ID</label>
+            <br/>
+            <textarea name="ID" id="ID_ID">0</textarea>
+         </form>
+      </div>
+      <div id="myTemplateForm">
+         <form class="myForm">        
+            <textarea name="Article_ID_1" id="Art1">0</textarea>
+            <textarea name="Article_ID_2" id="Art2">0</textarea>
+            <textarea name="Article_ID_3" id="Art3">0</textarea>
+            <textarea name="Article_ID_4" id="Art4">0</textarea>
+            <textarea name="Article_ID_5" id="Art5">0</textarea>
+            <textarea name="Article_ID_6" id="Art6">0</textarea>
+            <textarea name="Article_ID_7" id="Art7">0</textarea>
+            <textarea name="Article_ID_8" id="Art8">0</textarea>
+            <textarea name="Article_ID_9" id="Art9">0</textarea>
+            <textarea name="Article_ID_10" id="Art10">0</textarea>
+            <textarea name="Article_ID_11" id="Art11">0</textarea>
+            <textarea name="Article_ID_12" id="Art12">0</textarea>
+            <textarea name="Article_ID_13" id="Art30">Invalid</textarea> 
+            <textarea name="Article_ID_14" id="Art40">Invalid</textarea>
+            <textarea name="Article_ID_15" id="Art13">0</textarea>
+            <textarea name="Article_ID_16" id="Art14">0</textarea>
+            <textarea name="Article_ID_17" id="Art15">0</textarea>
+            <textarea name="Article_ID_18" id="Art16">0</textarea>
+            <textarea name="Article_ID_19" id="Art17">0</textarea>
+            <textarea name="Article_ID_20" id="Art18">0</textarea>
+            <textarea name="Article_ID_21" id="Art19">0</textarea>
+            <textarea name="Article_ID_22" id="Art20">0</textarea>
+            <textarea name="Article_ID_23" id="Art21">0</textarea>
+            <textarea name="Article_ID_24" id="Art22">0</textarea>
+            <textarea name="Article_ID_25" id="Art23">0</textarea>
+            <textarea name="Article_ID_26" id="Art24">0</textarea>        
+         </form>
+      </div>
+
+      <div class="styleAll" id="myDIV8">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 8 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory15"></p>
+                  <p class="article_title_style" id="article_title15"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift15">
+                     <li id="underoverskrift15_1"></li>
+                     <li id="underoverskrift15_2"></li>
+                     <li id="underoverskrift15_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture15" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_15"></figcaption>
+                  <p class="author_style" id="author15"></p>
+                  <p class="date_style" id="date15"></p>
+                  <p class="article_main_style" id="article_main15"></p>
+                  <button onclick="show_more()" id="showMoreLess15">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory16"></p>
+                  <p class="article_title_style" id="article_title16"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift16">
+                     <li id="underoverskrift16_1"></li>
+                     <li id="underoverskrift16_2"></li>
+                     <li id="underoverskrift16_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture16" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_16"></figcaption>
+                  <p class="author_style" id="author16"></p>
+                  <p class="date_style" id="date16"></p>
+                  <p class="article_main_style" id="article_main16"></p>
+                  <button onclick="show_more()" id="showMoreLess16">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair8_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair8_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair8_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair8_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair8_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_8" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_8" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_8" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_8" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_8" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_15" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_15" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_15" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_15" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_15" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_16" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_16" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_16" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_16" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_16" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV9">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 9 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory17"></p>
+                  <p class="article_title_style" id="article_title17"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift17">
+                     <li id="underoverskrift17_1"></li>
+                     <li id="underoverskrift17_2"></li>
+                     <li id="underoverskrift17_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture17" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_17"></figcaption>
+                  <p class="author_style" id="author17"></p>
+                  <p class="date_style" id="date17"></p>
+                  <p class="article_main_style" id="article_main17"></p>
+                  <button onclick="show_more()" id="showMoreLess17">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory18"></p>
+                  <p class="article_title_style" id="article_title18"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift18">
+                     <li id="underoverskrift18_1"></li>
+                     <li id="underoverskrift18_2"></li>
+                     <li id="underoverskrift18_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture18" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_18"></figcaption>
+                  <p class="author_style" id="author18"></p>
+                  <p class="date_style" id="date18"></p>
+                  <p class="article_main_style" id="article_main18"></p>
+                  <button onclick="show_more()" id="showMoreLess18">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair9_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair9_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair9_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair9_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair9_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_9" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_9" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_9" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_9" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_9" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_17" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_17" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_17" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_17" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_17" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_18" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_18" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_18" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_18" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_18" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV10">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 10 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory19"></p>
+                  <p class="article_title_style" id="article_title19"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift19">
+                     <li id="underoverskrift19_1"></li>
+                     <li id="underoverskrift19_2"></li>
+                     <li id="underoverskrift19_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture19" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_19"></figcaption>
+                  <p class="author_style" id="author19"></p>
+                  <p class="date_style" id="date19"></p>
+                  <p class="article_main_style" id="article_main19"></p>
+                  <button onclick="show_more()" id="showMoreLess19">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory20"></p>
+                  <p class="article_title_style" id="article_title20"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift20">
+                     <li id="underoverskrift20_1"></li>
+                     <li id="underoverskrift20_2"></li>
+                     <li id="underoverskrift20_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture20" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_20"></figcaption>
+                  <p class="author_style" id="author20"></p>
+                  <p class="date_style" id="date20"></p>
+                  <p class="article_main_style" id="article_main20"></p>
+                  <button onclick="show_more()" id="showMoreLess20">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair10_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair10_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair10_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair10_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair10_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_10" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_10" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_10" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_10" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_10" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_19" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_19" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_19" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_19" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_19" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_20" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_20" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_20" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_20" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_20" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV11">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 11 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory21"></p>
+                  <p class="article_title_style" id="article_title21"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift21">
+                     <li id="underoverskrift21_1"></li>
+                     <li id="underoverskrift21_2"></li>
+                     <li id="underoverskrift21_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture21" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_21"></figcaption>
+                  <p class="author_style" id="author21"></p>
+                  <p class="date_style" id="date21"></p>
+                  <p class="article_main_style" id="article_main21"></p>
+                  <button onclick="show_more()" id="showMoreLess21">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory22"></p>
+                  <p class="article_title_style" id="article_title22"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift22">
+                     <li id="underoverskrift22_1"></li>
+                     <li id="underoverskrift22_2"></li>
+                     <li id="underoverskrift22_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture22" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_22"></figcaption>
+                  <p class="author_style" id="author22"></p>
+                  <p class="date_style" id="date22"></p>
+                  <p class="article_main_style" id="article_main22"></p>
+                  <button onclick="show_more()" id="showMoreLess22">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair11_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair11_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair11_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair11_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair11_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_11" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_11" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_11" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_11" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_11" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_21" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_21" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_21" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_21" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_21" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_22" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_22" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_22" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_22" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_22" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV12">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 12 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory23"></p>
+                  <p class="article_title_style" id="article_title23"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift23">
+                     <li id="underoverskrift23_1"></li>
+                     <li id="underoverskrift23_2"></li>
+                     <li id="underoverskrift23_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture23" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_23"></figcaption>
+                  <p class="author_style" id="author23"></p>
+                  <p class="date_style" id="date23"></p>
+                  <p class="article_main_style" id="article_main23"></p>
+                  <button onclick="show_more()" id="showMoreLess23">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory24"></p>
+                  <p class="article_title_style" id="article_title24"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift24">
+                     <li id="underoverskrift24_1"></li>
+                     <li id="underoverskrift24_2"></li>
+                     <li id="underoverskrift24_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture24" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_24"></figcaption>
+                  <p class="author_style" id="author24"></p>
+                  <p class="date_style" id="date24"></p>
+                  <p class="article_main_style" id="article_main24"></p>
+                  <button onclick="show_more()" id="showMoreLess24">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair12_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair12_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair12_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair12_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair12_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_12" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_12" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_12" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_12" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_12" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_23" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_23" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_23" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_23" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_23" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_24" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_24" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_24" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_24" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_24" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="div_next()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      <div class="styleAll" id="myDIV13">
+         <div class="wrap">
+            <h1 class="likert-header">[Question 13 / 13]</h1>
+            <h2 class="h2_header"> Inspect both articles below. Click on ‘show more’ to read both articles in full. Afterwards, please respond to the four statements at the bottom of the page. </h2>
+            
+            <div class='parent'>
+               <div class='child1'>
+                  <p class="articleOne"> Article 1 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory25"></p>
+                  <p class="article_title_style" id="article_title25"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift25">
+                     <li id="underoverskrift25_1"></li>
+                     <li id="underoverskrift25_2"></li>
+                     <li id="underoverskrift25_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture25" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_25"></figcaption>
+                  <p class="author_style" id="author25"></p>
+                  <p class="date_style" id="date25"></p>
+                  <p class="article_main_style" id="article_main25"></p>
+                  <button onclick="show_more()" id="showMoreLess25">Show more</button>
+               </div>
+               <div class='child2'>
+                  <p class="articleTwo"> Article 2 </p>
+                  
+                  <p class="article_subcategory_style" id="article_subcategory26"></p>
+                  <p class="article_title_style" id="article_title26"></p>
+                  <ul class="underoverskrift_style" id="article_underoverskrift26">
+                     <li id="underoverskrift26_1"></li>
+                     <li id="underoverskrift26_2"></li>
+                     <li id="underoverskrift26_3"></li>
+                  </ul>
+                  <img class="article_picture_style" id="article_picture26" src="" width=100% height=100%>
+                  <figcaption class="image_caption_style" id="imagecaption_26"></figcaption>
+                  <p class="author_style" id="author26"></p>
+                  <p class="date_style" id="date26"></p>
+                  <p class="article_main_style" id="article_main26"></p>
+                  <button onclick="show_more()" id="showMoreLess26">Show more</button>
+               </div>
+            </div>
+
+            <form class="myForm">
+               <label class="statement">The articles above are very similar</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="pair13_sim" value="1">
+                     <label>1 <br> (Completely Disagree)</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair13_sim" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair13_sim" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair13_sim" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="pair13_sim" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am confident in my provided similarity rating</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="confidence_pair_13" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_13" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_13" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_13" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="confidence_pair_13" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 1 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_25" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_25" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_25" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_25" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_25" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               <label class="statement">I am familiar with Article 2 shown above</label>
+               <ul class='likert'>
+                  <li>
+                     <input type="radio" name="familiarity_article_26" value="1">
+                     <label>1 <br> (Completely Disagree) </label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_26" value="2">
+                     <label>2</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_26" value="3">
+                     <label>3</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_26" value="4">
+                     <label>4</label>
+                  </li>
+                  <li>
+                     <input type="radio" name="familiarity_article_26" value="5">
+                     <label>5 <br> (Completely Agree) </label>
+                  </li>
+               </ul>
+               
+            </form>
+            <div class="myButtons">   
+               <button onclick="div_previous()" class="previousButton"><< Previous</button>
+               <button onclick="to_cues()" class="nextButton">Next >></button>
+            </div>
+         </div>
+      </div>
+      
+      <div class="styleAll" id="informationCue">
+         <div class="demoText">
+            <span style="font-size:20px"><strong>Information Cues</strong><br /><br /></span>
+            <span style="font-size:17px">Depicted below is an example of how a news article consists of different cues. Please indicate for each of these cues how important they were while making similarity judgements.<br /><br /><br /><br /></span>
+         </div>
+
+            <img src="info_cue_explanation.jpg" id="information_cue_image">
+
+         <form class="myForm">
+            <label class="statement" id="informationCueUsage">I looked at the article <strong>category</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_subcategory" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subcategory" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subcategory" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subcategory" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subcategory" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+            <label class="statement" id="informationCueUsage">I looked at the article <strong>title</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_title" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_title" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_title" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_title" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_title" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+            <label class="statement" id="informationCueUsage">I looked at the article <strong>subheading</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_subheading" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subheading" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subheading" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subheading" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_subheading" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+            <label class="statement" id="informationCueUsage">I looked at the article <strong>image</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_image" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_image" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_image" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_image" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_image" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+            <label class="statement" id="informationCueUsage">I looked at the <strong>author(s)</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_author" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_author" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_author" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_author" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_author" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+            <label class="statement" id="informationCueUsage">I looked at the <strong>date of publication</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_date" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_date" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_date" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_date" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_date" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+            <label class="statement" id="informationCueUsage">I looked at the article <strong>body text</strong> to estimate the similarity between the articles</label>
+            <ul class='likert'>
+               <li>
+                  <input type="radio" name="cue_bodytext" value="1">
+                  <label class="radioText">1 <br> (Completely Disagree) </label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_bodytext" value="2">
+                  <label class="radioText">2</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_bodytext" value="3">
+                  <label class="radioText">3</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_bodytext" value="4">
+                  <label class="radioText">4</label>
+               </li>
+               <li>
+                  <input type="radio" name="cue_bodytext" value="5">
+                  <label class="radioText">5 <br> (Completely Agree) </label>
+               </li>
+            </ul>
+         </form>
+         <div class="myButtons">   
+            <button onclick="cues_previous()" class="previousButton"><< Previous</button>
+            <button onclick="cues_next()" class="nextButton">Next >></button>
+         </div>
+      </div>
+
+
+
+
+
+      <div class="styleAll" id="demo">
+         <div class="demoText">
+            <span style="font-size:20px"><strong>Personal Details</strong><br /><br /></span>
+            <span style="font-size:17px">Please indicate below some information about yourself and your online news reading habits. This information will be processed anonymously and cannot be traced back to you.<br /><br /><br /></span>
+         </div>
+         <form class="myForm">
+            <label for="age" class="demoForm">What is your age?</label>
+            <select id="age" name="age">
+               <option disabled selected value> -- select an option -- </option>
+               <option value="<18"><18</option>
+               <option value="18-24">18-24</option>
+               <option value="25-34">25-34</option>
+               <option value="35-44">35-44</option>
+               <option value="45-55">45-55</option>
+               <option value=">55">>55</option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <label for="gender" class="demoForm">To which gender do you most identify?</label>
+            <select id="gender" name="gender">
+               <option disabled selected value> -- select an option -- </option>
+               <option value="Male">Male</option>
+               <option value="Female">Female</option>
+               <option value="Other">Non-binary</option>
+               <option value="Other">Other / Prefer not to say</option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <label for="education" class="demoForm">What is your highest completed education?</label>
+            <select id="education" name="education">
+               <option disabled selected value> -- select an option -- </option>
+               <option value="Less than high school">Less than high school</option>
+               <option value="High school or equivalent">High school or equivalent</option>
+               <option value="Vocational School">Vocational School</option>
+               <option value="Bachelor Degree (e.g., BA, BSc)">Bachelor Degree (e.g., BA, BSc)</option>
+               <option value="Master Degree (eg., MA, MSc)">Master Degree (eg., MA, MSc)</option>
+               <option value="Doctorate (e.g., PhD)">Doctorate (e.g., PhD)</option>
+               <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <label for="use_of_newspapers2" class="demoForm">On average, how many days a week do you read online news articles?</label>
+            <select id="use_of_newspapers2" name="use_of_newspapers2">
+               <option disabled selected value> -- select an option -- </option>
+               <option value="0">0</option>
+               <option value="1">1</option>
+               <option value="2">2</option>
+               <option value="3">3</option>
+               <option value="4">4</option>
+               <option value="5">5</option>
+               <option value="6">6</option>
+               <option value="7">7</option>
+            </select>
+            <br />
+            <br />
+            <br />
+            <label for="prolific_id" class="demoForm">Please enter your Prolific ID:</label><br>
+            <input type="text" id="prolific_id" name="prolific_id"><br>
+            <br />
+            <br />
+                        
+            <label for="comments" class="demoForm">Do you have any comments about this study?</label><br>
+            <textarea class="demoForm" id="comments" name="comments" rows="4" cols="50"></textarea>
+            <input id="beGone" input type="submit" value="Submit">
+            <br>
+            <br />
+            <br />
+            <br />
+            <br />
+         </form>
+         <div class="myButtons">   
+            <button onclick="demo_previous()" class="previousButton"><< Previous</button>
+            <button onclick="demo_final()" id="submitButton">SUBMIT</button>
+         </div>
+      </div>
+
+      <div class="styleAll" id="thankYou">
+         <p> <strong>Thank you for taking the time to complete this survey!</strong> </p>
+         <p> Your data has now been submitted. If your browser asks whether you really want to leave the site when you press the link below, simply press "leave". </p>
+         <p> [Placeholder for a prolific link] </p>
+      </div>
+
+
+
+   </body>
+</html>
