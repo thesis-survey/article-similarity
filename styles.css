@@ -176,6 +176,10 @@ form .buttons .submit:hover {
   display: none
 }
 
+#thankYou {
+  display: none;
+}
+
 .parent {
   margin: 1rem;
   padding: 1rem 1rem;
